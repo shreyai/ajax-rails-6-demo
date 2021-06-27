@@ -16,4 +16,5 @@ import $ from 'jquery';
 global.$ = jQuery;
 
 import 'stylesheets/application';
-import 'bootstrap';
+import bootstrap from 'bootstrap';
+global.bootstrap = Bootstrap;

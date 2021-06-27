@@ -1,0 +1,8 @@
+<% if @user.errors.any? %>
+  $("#error-area").html("<%= escape_javascript render('error', user: @user) %>");
+<% else %>
+  $("#userTable").append("<%= escape_javascript render('user', user: @user) %>");
+  $('.close-modal').click();
+<% end %>
+
+

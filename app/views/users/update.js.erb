@@ -1,0 +1,6 @@
+<% if @user.errors.any? %>
+  $("#error-area").html("<%= escape_javascript render('error', user: @user) %>");
+<% else %>
+  $("#user_<%= @user.id %>").replaceWith("<%= escape_javascript render('user', user: @user) %>");
+  $('.close-modal').click();
+<% end %>

@@ -5,7 +5,7 @@
 
       <h1>Users</h1>
 
-      <%= link_to 'New User', new_user_path, class: 'btn btn-primary mb-2 btn-lg' %>
+      <%= link_to 'New User', new_user_path, class: 'btn btn-primary mb-2 btn-lg', data: { bs_toggle: "modal", bs_target: "#newUserModal", remote: true } %>
 
       <table class="table table-bordered">
         <thead>
@@ -18,9 +18,9 @@
           </tr>
         </thead>
 
-        <tbody>
+        <tbody id="userTable">
           <% @users.each do |user| %>
-            <tr>
+            <tr id="user_<%= user.id %>">
               <td><%= user.name %></td>
               <td><%= user.email %></td>
               <td><%= user.address %></td>
@@ -31,9 +31,9 @@
                     Actions
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><%= link_to 'Show', user, class: 'dropdown-item' %></li>
-                    <li><%= link_to 'Edit', edit_user_path(user), class: 'dropdown-item' %></li>
-                    <li><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item' %></li>
+                    <li><%= link_to 'Show', user, data: { bs_toggle: "modal", bs_target: "#showUserModal", remote: true }, class: 'dropdown-item' %></li>
+                    <li><%= link_to 'Edit', edit_user_path(user), data: { bs_toggle: "modal", bs_target: "#editUserModal", remote: true }, class: 'dropdown-item' %></li>
+                    <li><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: 'dropdown-item' %></li>
                   </ul>
                 </div>
               </td>
@@ -41,6 +41,48 @@
           <% end %>
         </tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+<!-- Create user modal popup -->
+<div class="modal fade" id="newUserModal" tabindex="-1" aria-labelledby="newUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModal">New User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="newUserForm">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit user modal popup -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editUserModal">Edit User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="editUserForm">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Show user modal popup -->
+<div class="modal fade" id="showUserModal" tabindex="-1" aria-labelledby="showUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showUserModal">User Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="showUser">
+      </div>
     </div>
   </div>
 </div>
